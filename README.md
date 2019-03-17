@@ -7,21 +7,32 @@
 ## Install
 
 ```bash
-npm install --save react-simple-heatmap
+npm install react-simple-heatmap
+yarn add react-simple-heatmap
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-import MyComponent from 'react-simple-heatmap'
+import Heatmap from "react-simple-heatmap"
 
-class Example extends Component {
-  render () {
+export default class App extends Component {
+
+  render() {
+
     return (
-      <MyComponent />
-    )
+			<div
+				style={{ height: "500px", width: "500px" }}>
+				<Heatmap
+					showLabels={ true }  // boolean
+					color={ "rgb(255, 17, 17)" }  // rgb color
+					data={ data }  // matrix (array of array of number)
+					onClick={ (data) => console.log(data) }  // function
+				/>
+			</div>
+    );
   }
 }
 ```
