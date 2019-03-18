@@ -35,12 +35,12 @@ export default class App extends Component {
   render() {
 
     return (
-			<div
-				style={{ height: "500px", width: "500px" }}>
-				<Heatmap
-					data={ data }  // 2D array of numbers
-				/>
-			</div>
+      <div
+        style={{ height: "500px", width: "500px" }}>
+        <Heatmap
+          data={ data }  // 2D array of numbers
+        />
+      </div>
     );
   }
 }
