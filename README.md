@@ -37,6 +37,10 @@ export default class App extends Component {
 }
 ```
 
+## Screenshot
+
+![Alt text](./img/screenshotReactHeatmap.png)
+
 ## License
 
 MIT © [JulienRioux](https://github.com/JulienRioux)
