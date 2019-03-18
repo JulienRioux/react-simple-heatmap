@@ -4,6 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/v/react-simple-heatmap.svg)](https://www.npmjs.com/package/react-simple-heatmap) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+
 ## Install
 
 ```bash
@@ -14,6 +15,11 @@ or
 yarn add react-simple-heatmap
 ```
 
+
+## Demo
+[Here is a simple preview.](https://react-simple-heatmap.firebaseapp.com/)
+
+
 ## Properties
 | Name | Type |  description | example | default | isRequired |
 |--|--|--|--|--|--|
@@ -21,6 +27,7 @@ yarn add react-simple-heatmap
 | bgColor | String | Main color using RGB format | "rgb(255, 17, 17)" | "rgb(24, 144, 255)" | false |
 | showLabels | Bollean | Display data inside each cells.  | true | false | false |
 | onClick | Function | Adding an handler to cell click | (data) => console.log(data) | undefined | false |
+
 
 
 ## Usage
@@ -45,6 +52,7 @@ export default class App extends Component {
   }
 }
 ```
+
 
 
 ## Example
@@ -85,9 +93,11 @@ export default class App extends Component {
 }
 ```
 
+
 ## Screenshot
 
 ![Alt text](./img/screenshotReactHeatmap.png)
+
 
 ## License
 
