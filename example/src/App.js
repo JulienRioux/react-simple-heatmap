@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import Heatmap from 'react-simple-heatmap'
 
 import './App.css';
