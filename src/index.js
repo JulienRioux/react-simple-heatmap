@@ -37,7 +37,9 @@ class Heatmap extends Component {
 	}
 
 	handleClick = (data) => {
-
+		if(this.props.onClick){
+			this.props.onClick(square);
+		}
 	}
 
   render() {
@@ -80,7 +82,7 @@ class Heatmap extends Component {
 											<div
 												key={ i + "" + j }
 												className={ styles.square }
-												onClick={ () => this.props.onClick(square) }
+												onClick={ () => this.handleClick(square) }
 												style={{ ...squareStyle, backgroundColor: bgColor }}>
 												{ this.props.showLabels && square }
 											</div>
