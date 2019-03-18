@@ -55,6 +55,7 @@ import Heatmap from 'react-simple-heatmap'
 
 import './App.css';
 
+// Creating a 10 x 10 array of random numbers
 const size = 10;
 const data = [];
 for(let i = 0; i < size; i++){
@@ -70,13 +71,13 @@ export default class App extends Component {
   render() {
     return (
       <div style={{ marginTop: "4rem" }}>
-        <div
-          style={{ height: "500px", width: "500px" }}>
+        <div style={{ height: "500px", width: "500px" }}>
           <Heatmap
             showLabels={ true }
             bgColor={ "rgb(255, 17, 17)" }
             data={ data }
-            onClick={ (data) => console.log(data) } />
+            onClick={ (data) => console.log(data) }
+					/>
         </div>
       </div>
     );
