@@ -9,7 +9,7 @@ class Heatmap extends Component {
 			data: PropTypes.arrayOf(
 					PropTypes.arrayOf(PropTypes.number).isRequired
 				).isRequired,
-			color: PropTypes.string,
+			bgColor: PropTypes.string,
 			showLabels: PropTypes.bool
 	  }
 	state = {
@@ -42,7 +42,7 @@ class Heatmap extends Component {
 
   render() {
 		const { min, max } = this.state;
-		const { data, color } = this.props;
+		const { data, bgColor } = this.props;
 
 		const numX = data.length;
 		// const numY = data[0].length;
@@ -50,7 +50,7 @@ class Heatmap extends Component {
 		// It dont work because of the formula is wrong... (length of 20 !== 20%);
 		const height = 1 / (numX / 100) + "%";
 
-		let backgroundColor = color ? color : "rgb(24, 144, 255)";
+		let backgroundColor = bgColor ? bgColor : "rgb(24, 144, 255)";
 		backgroundColor = backgroundColor.split(")")[0].split("rgb")[1] + ", ";
 		backgroundColor = "rgba" + backgroundColor;
 

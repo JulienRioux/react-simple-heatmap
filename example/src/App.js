@@ -23,7 +23,7 @@ export default class App extends Component {
 					style={{ height: "500px", width: "500px" }}>
 					<Heatmap
 						showLabels={ true }
-						color={ "rgb(255, 17, 17)" }
+						bgColor={ "rgb(255, 17, 17)" }
 						data={ data }
 						onClick={ (data) => console.log(data) } />
 				</div>

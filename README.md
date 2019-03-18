@@ -1,6 +1,6 @@
 # react-simple-heatmap
 
-> A simple React component to create responsive heatmap.
+> A simple React component to create responsive heatmap. The heatmap take the height and width of it's parent element.
 
 [![NPM](https://img.shields.io/npm/v/react-simple-heatmap.svg)](https://www.npmjs.com/package/react-simple-heatmap) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -8,8 +8,20 @@
 
 ```bash
 npm install react-simple-heatmap
+```
+or
+```bash
 yarn add react-simple-heatmap
 ```
+
+## Properties
+| Name | Type |  description | example | default | isRequired |
+|--|--|--|--|--|--|
+| data | 2D Array of numbers | 2D Matrix of numbres | [[10,12,33], [2,45,31], [16, 32, 29]] | undefined |  true |
+| bgColor | String | Main color using RGB format | "rgb(255, 17, 17)" | "rgb(24, 144, 255)" | false |
+| showLabels | Bollean | Display data inside each cells.  | true | false | false |
+| onClick | Function | Adding an handler to cell click | (data) => console.log(data) | undefined | false |
+
 
 ## Usage
 
@@ -29,7 +41,7 @@ export default class App extends Component {
 					showLabels={ true }  // boolean
 					color={ "rgb(255, 17, 17)" }  // rgb color
 					data={ data }  // matrix (array of array of number)
-					onClick={ (data) => console.log(data) }  // function
+					onClick={ (data) => console.log(data) }  // function
 				/>
 			</div>
     );
