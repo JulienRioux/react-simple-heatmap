@@ -38,7 +38,7 @@ class Heatmap extends Component {
 
 	handleClick = (data) => {
 		if(this.props.onClick){
-			this.props.onClick(square);
+			this.props.onClick(data);
 		}
 	}
 

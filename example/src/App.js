@@ -24,7 +24,8 @@ export default class App extends Component {
 						showLabels={ true }
 						bgColor={ "rgb(255, 17, 17)" }
 						data={ data }
-						onClick={ (data) => console.log(data) } />
+						onClick={ (data) => console.log(data) } 
+					/>
 				</div>
       </div>
     );
