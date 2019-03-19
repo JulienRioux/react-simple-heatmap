@@ -21,3 +21,91 @@
 	height: 100%;
   width: 100%;
 }
+
+.mainWrapper{
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.heatmapLegend{
+	border: 1px solid #ebedf0;
+	width: 35px;
+	margin-left: 1.5rem;
+}
+
+.legendTicks{
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-between;
+	margin: -5.5px 0;
+}
+
+.legendTick{
+	font-size: 10px;
+	padding: 0 5px;
+}
+
+.tickWrapper{
+	display: flex;
+	align-items: center;
+}
+
+.smallLine{
+	width: 6px;
+	border-bottom: 1px solid #ebedf0;
+}
+
+.yLabels{
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin: -6px 0 -8px;
+}
+
+.heatmapAndYlabels{
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.heatMapAndXlabels{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+}
+
+.xLabels{
+	display: flex;
+	justify-content: space-between;
+	/* align-items: center; */
+	margin: 2px 79px 0 25px;
+}
+
+.xTickWrapper{
+	align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.xTick{
+	font-size: 10px;
+	padding: 5 0px;
+	width: 10px;
+	text-align: center;
+}
+
+.xSmallLine{
+	height: 6px;
+	border-right: 1px solid #ebedf0;
+}
+
+.xLines{
+	display: flex;
+	justify-content: space-between;
+	/* align-items: center; */
+	margin: 2px 84px 0 29px;
+}

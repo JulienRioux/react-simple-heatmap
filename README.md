@@ -25,8 +25,10 @@ yarn add react-simple-heatmap
 |--|--|--|--|--|--|
 | data | 2D Array of numbers | 2D Matrix of numbres | [[10,12,33], [2,45,31], [16, 32, 29]] | undefined |  true |
 | bgColor | String | Main color using RGB format | "rgb(255, 17, 17)" | "rgb(24, 144, 255)" | false |
-| showLabels | Bollean | Display data inside each cells.  | true | false | false |
+| showData | Bollean | Display data inside each cells.  | true | false | false |
+| showLegend | Bollean | Display the heatmap legend.  | true | false | false |
 | onClick | Function | Adding an handler to cell click | (data) => console.log(data) | undefined | false |
+| bordered | Bollean | Display a border on the heatmap.  | false | true | false |
 
 
 
@@ -81,10 +83,11 @@ export default class App extends Component {
       <div style={{ marginTop: "4rem" }}>
         <div style={{ height: "500px", width: "500px" }}>
           <Heatmap
-            showLabels={ true }
+            showData={ true }
+            showLegend={ true }
             bgColor={ "rgb(255, 17, 17)" }
             data={ data }
-            onClick={ (data) => console.log(data) }
+            onClick={ (data) => console.log(data) }
 					/>
         </div>
       </div>

@@ -19,13 +19,21 @@ export default class App extends Component {
     return (
       <div className="App">
 				<div
-					style={{ height: "500px", width: "500px" }}>
-					<Heatmap
-						showLabels={ true }
-						bgColor={ "rgb(255, 17, 17)" }
-						data={ data }
-						onClick={ (data) => console.log(data) } 
-					/>
+					style={{ height: "500px", width: "600px" }}>
+					{
+						data.length > 0 && (
+							<Heatmap
+								// title="React-Simple-Heatmap"
+								// showLabels={ true }
+								showLegend={ true }
+								showData={ true }
+								// bgColor={ "rgb(255, 17, 17)" }
+								// bordered={ false }
+								data={ data }
+								onClick={ (data) => console.log(data) }
+							/>
+						)
+					}
 				</div>
       </div>
     );
