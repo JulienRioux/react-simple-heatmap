@@ -26,11 +26,11 @@ export default class App extends Component {
 								// title="React-Simple-Heatmap"
 								// showLabels={ true }
 								showLegend={ true }
-								showData={ true }
+								// showData={ true }
 								// bgColor={ "rgb(255, 17, 17)" }
 								// bordered={ false }
 								data={ data }
-								onClick={ (data) => console.log(data) }
+								// onClick={ (data) => console.log(data) }
 							/>
 						)
 					}
