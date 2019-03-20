@@ -69,8 +69,8 @@ class Heatmap extends Component {
 		const mult = 1 / (max - min);
 
 		// const legendLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
-		const yLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
-		const xLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
+		// const yLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
+		// const xLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
 
 		// Create the legend
 		const legendLabels = [];
@@ -82,6 +82,8 @@ class Heatmap extends Component {
 			legendItem = Math.round(legendItem * 10) / 10
 			legendLabels.push(legendItem);
 		}
+
+		console.log("legendStep", legendLabels);
 
 		// console.log(legendLabels);
 
@@ -148,7 +150,7 @@ class Heatmap extends Component {
 							}
 						</div>
 						{
-							this.props.showLegend && min && (
+							this.props.showLegend && min !== undefined && (
 								<Fragment>
 									<div
 										style={{ background: `linear-gradient( ${legendColor} , #fff)`, borderColor }}
