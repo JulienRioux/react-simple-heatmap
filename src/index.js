@@ -83,6 +83,8 @@ class Heatmap extends Component {
 			legendLabels.push(legendItem);
 		}
 
+		// console.log(legendLabels);
+
 		const borderColor = "#314659";
 
 		// Check if the heatmap need a border
@@ -146,7 +148,7 @@ class Heatmap extends Component {
 							}
 						</div>
 						{
-							this.props.showLegend && (
+							this.props.showLegend && min && (
 								<Fragment>
 									<div
 										style={{ background: `linear-gradient( ${legendColor} , #fff)`, borderColor }}
