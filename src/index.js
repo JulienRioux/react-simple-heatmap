@@ -69,8 +69,8 @@ class Heatmap extends Component {
 		const mult = 1 / (max - min);
 
 		// const legendLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
-		// const yLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
-		// const xLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
+		const yLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
+		const xLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
 
 		// Create the legend
 		const legendLabels = [];
@@ -150,7 +150,7 @@ class Heatmap extends Component {
 							}
 						</div>
 						{
-							this.props.showLegend && min !== undefined && (
+							this.props.showLegend && (min !== undefined && min !== "NaN")  && (
 								<Fragment>
 									<div
 										style={{ background: `linear-gradient( ${legendColor} , #fff)`, borderColor }}
