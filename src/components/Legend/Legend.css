@@ -1,0 +1,28 @@
+.heatmapLegend{
+	border: 1px solid #000;
+	width: 6%;
+	margin-left: 4%;
+}
+
+.legendTicks{
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-between;
+	margin: -5.5px 1px;
+}
+
+.legendTick{
+	font-size: 10px;
+	padding: 0 5px;
+}
+
+.tickWrapper{
+	display: flex;
+	align-items: center;
+	width: 40px;
+}
+
+.smallLine{
+	width: 6px;
+	border-bottom: 1px solid #000;
+}

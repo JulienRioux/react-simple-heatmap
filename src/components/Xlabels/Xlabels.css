@@ -1,0 +1,32 @@
+.xLabels{
+	display: flex;
+	justify-content: space-around;
+	/* align-items: center; */
+	margin: 2px calc(9.5% + 33px) 0 34px;
+}
+
+.xTickWrapper{
+	align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.xTick{
+	font-size: 10px;
+	padding: 5 0px;
+	text-align: center;
+	width: 30px;
+}
+
+.xSmallLine{
+	height: 6px;
+	border-right: 1px solid #ebedf0;
+}
+
+.xLines{
+	display: flex;
+	justify-content: space-around;
+	/* align-items: center; */
+	margin: 3px calc(9.5% + 37px) 0 40px;
+}

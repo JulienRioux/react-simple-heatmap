@@ -1,0 +1,24 @@
+.tickWrapper{
+	display: flex;
+	align-items: center;
+	width: 40px;
+	justify-content: flex-end;
+}
+
+.smallLine{
+	width: 6px;
+	border-bottom: 1px solid #ebedf0;
+}
+
+.yLabels{
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-around;
+	align-items: flex-end;
+  margin: 1px 1px -3px;
+}
+
+.yTick{
+	font-size: 10px;
+	padding: 0 5px;
+}
