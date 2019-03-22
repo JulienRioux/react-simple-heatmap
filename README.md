@@ -80,37 +80,57 @@ export default class App extends Component {
 import React, { Component } from 'react'
 import Heatmap from 'react-simple-heatmap'
 
-import './App.css';
-
-// Creating a 10 x 10 array of random numbers
-const size = 10;
+// Creating a 2D array (7 x 24)
+const size = 7;
 const data = [];
 for(let i = 0; i < size; i++){
-  const temp = [];
-  for(let i = 0; i < size; i++){
-    temp.push(Math.round(Math.random() * 100) / 100);
-  }
-  data.push(temp);
+	const temp = [];
+	for(let i = 0; i < 24; i++){
+		temp.push(Math.round(Math.random() * 100));
+	}
+	data.push(temp);
 }
 
 export default class App extends Component {
 
   render() {
+		// Create an array of for the Y labels
+		const yLabels = [];
+		for(let i = 0; i < 24; i++){
+			yLabels.push(i+1 + " h");
+		}
+
     return (
-      <div style={{ marginTop: "4rem" }}>
-        <div style={{ height: "500px", width: "500px" }}>
-          <Heatmap
-            showData={ true }
-            showLegend={ true }
-            bgColor={ "rgb(255, 17, 17)" }
-            data={ data }
-            onClick={ (data) => console.log(data) }
-		  />
-        </div>
+      <div className="App">
+				<div
+					style={{ height: "500px", width: "800px", margin: "4rem auto" }}
+				>
+					{
+						data.length > 0 && (
+							<Heatmap
+							  data={ data }
+								bgColors={ ["rgb(255, 11, 11)", "rgb(255, 255, 0)"] }
+								xLabels={ ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"] }
+								yLabels={ yLabels }
+								showLegend={ true }
+								xStepLabel={ 2 }
+								yStepLabel={ 2 }
+								showTicks={ "x" }
+								xLabelsStyle={{ fontWeight: "bold", fontSize: "11px" }}
+								yLabelsStyle={{ fontWeight: "bold" }}
+								legendStyle={{ fontWeight: "bold" }}
+								bordered={ false }
+								borderRadius={ "4px" }
+								onClick={ (data, x, y) => alert(`Data: ${ data }, X: ${ x }, Y: ${ y }`) }
+							/>
+						)
+					}
+				</div>
       </div>
     );
   }
 }
+
 ```
 
 
