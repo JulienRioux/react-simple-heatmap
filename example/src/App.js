@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import Heatmap from 'react-simple-heatmap'
 
-import './App.css';
+// import './App.css';
 
-const size = 20;
+const size = 7;
 const data = [];
 for(let i = 0; i < size; i++){
 	const temp = [];
-	for(let i = 0; i < size; i++){
+	for(let i = 0; i < 24; i++){
 		temp.push(Math.round(Math.random() * 100));
 	}
 	data.push(temp);
@@ -16,21 +16,35 @@ for(let i = 0; i < size; i++){
 export default class App extends Component {
 
   render() {
+		const yLabels = [];
+		for(let i = 0; i < 24; i++){
+			yLabels.push(i+1 + " h");
+		}
+
     return (
       <div className="App">
 				<div
-					style={{ height: "500px", width: "600px" }}>
+				  // className="heatMapWrapper"
+					style={{ height: "500px", width: "800px", margin: "4rem auto" }}
+				>
 					{
 						data.length > 0 && (
 							<Heatmap
-								// title="React-Simple-Heatmap"
-								// showLabels={ true }
 								showLegend={ true }
 								// showData={ true }
-								bgColor={ "rgb(255, 17, 17)" }
-								// bordered={ false }
+								bgColors={ ["rgb(255, 11, 11)", "rgb(255, 255, 0)"] }
+								xLabels={ ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"] }
+								yLabels={ yLabels }
+								xStepLabel={ 2 }
+								yStepLabel={ 2 }
+								showTicks={ "x" }
+								xLabelsStyle={{ fontWeight: "bold", fontSize: "11px" }}
+								yLabelsStyle={{ fontWeight: "bold" }}
+								legendStyle={{ fontWeight: "bold" }}
+								bordered={ false }
 								data={ data }
-								// onClick={ (data) => console.log(data) }
+								onClick={ (data, x, y) => alert(`Data: ${ data }, X: ${ x }, Y: ${ y }`) }
+								borderRadius={ "4px" }
 							/>
 						)
 					}

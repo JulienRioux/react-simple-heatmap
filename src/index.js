@@ -1,18 +1,31 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-import styles from './styles.css'
+import Legend from "./components/Legend";
+import Xlabels from "./components/Xlabels";
+import Ylabels from "./components/Ylabels";
 
+import styles from './styles.css';
 
 class Heatmap extends Component {
 	  static propTypes = {
 			data: PropTypes.arrayOf(
 					PropTypes.arrayOf(PropTypes.number).isRequired
 				).isRequired,
-			bgColor: PropTypes.string,
+			bgColors: PropTypes.arrayOf(PropTypes.string),
 			showData: PropTypes.bool,
 			showLabels: PropTypes.bool,
-			showLegend: PropTypes.bool
+			showLegend: PropTypes.bool,
+			xStepLabel: PropTypes.number,
+			yStepLabel: PropTypes.number,
+			showTicks: PropTypes.oneOfType([
+			  PropTypes.string,
+			  PropTypes.bool
+			]),
+			xLabelsStyle: PropTypes.object,
+			yLabelsStyle: PropTypes.object,
+			legendStyle: PropTypes.object,
+			borderRadius: PropTypes.string
 	  }
 	state = {
 		min: undefined,
@@ -38,23 +51,32 @@ class Heatmap extends Component {
 		this.setState({ min, max });
 	}
 
-	handleClick = (data) => {
+	handleClick = (data, x, y) => {
+		// If there is a onClick event, add it to every square
 		if(this.props.onClick){
-			this.props.onClick(data);
+			this.props.onClick(data, x, y);
 		}
 	}
 
   render() {
 		const { min, max } = this.state;
-		const { data, bgColor } = this.props;
+		let { data, bgColors, xLabels, yLabels, labelsFontSize } = this.props;
 
-		const numX = data.length;
-		// const numY = data[0].length;
+		// const numX = data.length;
+		const numY = data[0].length;
 
 		// It dont work because of the formula is wrong... (length of 20 !== 20%);
-		const height = 1 / (numX / 100) + "%";
+		const height = 1 / (numY / 100) + "%";
 
-		let backgroundColor = bgColor ? bgColor : "rgb(24, 144, 255)";
+		// Set the default color if not provided
+		bgColors = bgColors ? bgColors : ["rgb(24, 144, 255)", "rgb(255, 255, 255)"];
+
+		// Add a bgColor (white) if only one color is provided
+		bgColors = bgColors.length > 1 ? bgColors : [bgColors[0], "rgb(255, 255, 255)"];
+
+
+		let backgroundColor = bgColors ? bgColors[0] : "rgb(24, 144, 255)";
+
 		const legendColor = backgroundColor;
 		backgroundColor = backgroundColor.split(")")[0].split("rgb")[1] + ", ";
 		backgroundColor = "rgba" + backgroundColor;
@@ -68,9 +90,7 @@ class Heatmap extends Component {
 		// Get the multiplier for the opacity
 		const mult = 1 / (max - min);
 
-		// const legendLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
-		// const yLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
-		// const xLabels = [0, 0.2, 0.4, 0.6, 0.8, 1];
+		const borderColor = "#314659";
 
 		// Create the legend
 		const legendLabels = [];
@@ -83,132 +103,88 @@ class Heatmap extends Component {
 			legendLabels.push(legendItem);
 		}
 
-		console.log("legendStep", legendLabels);
+		// console.log("legendStep", legendLabels);
 
 		// console.log(legendLabels);
-
-		const borderColor = "#314659";
 
 		// Check if the heatmap need a border
 		const borderStyle = this.props.bordered === false ? "none" : "1px solid";
 
 
-		// To finished!
-		const showXLabels = false;
-		const showYLabels = false;
-
     return (
-			<div className={ styles.mainWrapper }>
-
-				<div className={ styles.heatMapAndXlabels }>
-					<div className={ styles.heatmapAndYlabels }>
-						{
-							showYLabels && (
-								<div className={ styles.yLabels }>
-									{
-										yLabels.map((y, i) => (
-											<div
-												key={ i }
-												className={ styles.tickWrapper }>
-												<div
-													className={ styles.legendTick }>{ y }</div>
-												<div
-													style={{ borderColor }}
-													className={ styles.smallLine }></div>
-											</div>
-										))
-									}
-								</div>
-							)
-						}
-
-						<div
-							style={{ border: borderStyle, borderColor }}
-							className={ styles.heatMap }>
+			<div className={ styles.titleAndHeatmap }>
+				<div className={ styles.mainWrapper }>
+					<div className={ styles.heatMapAndXlabels }>
+						<div className={ styles.heatmapAndYlabels }>
 							{
-								data.map((row, i) => (
-									<div
-										key={ i }
-										className={ styles.heatMapRow }>
-										{
-											row.map((square, j) => {
-												const opacity = (square - min) * mult;
-												const bgColor = backgroundColor + opacity + ")";
-												return (
-													<div
-														key={ i + "" + j }
-														className={ styles.square }
-														onClick={ () => this.handleClick(square) }
-														style={{ ...squareStyle, backgroundColor: bgColor }}>
-														{ this.props.showData && square }
-													</div>
-												)
-											})
-										}
-									</div>
-								))
+								yLabels && (
+									<Ylabels
+									  borderColor={ borderColor }
+										yLabels={ yLabels }
+										yStepLabel={ this.props.yStepLabel }
+										showTicks={ this.props.showTicks }
+										yLabelsStyle={ this.props.yLabelsStyle } />
+								)
+							}
+
+							<div
+								style={{
+									border: borderStyle,
+									borderColor,
+									backgroundColor: bgColors[1],
+									borderRadius: this.props.borderRadius
+								}}
+								className={ styles.heatMap }>
+								{
+									data.map((row, i) => (
+										<div
+											key={ i }
+											className={ styles.heatMapRow }>
+											{
+												row.map((square, j) => {
+													const opacity = (square - min) * mult;
+													const bgColors = backgroundColor + opacity + ")";
+													const x = i;
+													const y = (row.length - 1) - j;
+													return (
+														<div
+															key={ i + "" + j }
+															className={ styles.square }
+															onClick={ () => this.handleClick(square, x, y) }
+															style={{ ...squareStyle, backgroundColor: bgColors }}>
+															{ this.props.showData && square }
+														</div>
+													)
+												})
+											}
+										</div>
+									))
+								}
+							</div>
+							{
+								this.props.showLegend && (min !== undefined && min !== "NaN")  && (
+									<Legend
+									  legendLabels={ legendLabels }
+									  legendColors={ bgColors }
+										borderColor={ borderColor }
+										bordered={ this.props.bordered }
+										legendStyle={ this.props.legendStyle }
+										borderRadius={ this.props.borderRadius } />
+								)
 							}
 						</div>
+
 						{
-							this.props.showLegend && min !== undefined && (
-								<Fragment>
-									<div
-										style={{ background: `linear-gradient( ${legendColor} , #fff)`, borderColor }}
-										className={ styles.heatmapLegend }>
-									</div>
-									<div
-										className={ styles.legendTicks }>
-										{
-											legendLabels.map((label, i) => (
-												<div
-													key={ i }
-													className={ styles.tickWrapper }>
-													<div
-														style={{ borderColor }}
-														className={ styles.smallLine }></div>
-													<div
-														className={ styles.legendTick }>{ label }</div>
-												</div>
-											))
-										}
-									</div>
-								</Fragment>
+							xLabels && (
+								<Xlabels
+								  borderColor={ borderColor }
+									xLabels={ xLabels }
+									xStepLabel={ this.props.xStepLabel }
+									showTicks={ this.props.showTicks }
+									xLabelsStyle={ this.props.xLabelsStyle } />
 							)
 						}
 					</div>
-
-					{
-						showXLabels && (
-							<Fragment>
-								<div className={ styles.xLines }>
-									{
-										xLabels.map((x, i) => (
-											<div
-												key={ i }
-												className={ styles.xTickWrapper }>
-												<div
-													style={{ borderColor }}
-													className={ styles.xSmallLine }></div>
-											</div>
-										))
-									}
-								</div>
-								<div className={ styles.xLabels }>
-									{
-										xLabels.map((x, i) => (
-											<div
-												key={ i }
-												className={ styles.xTickWrapper }>
-												<div
-													key={ i }
-													className={ styles.xTick }>{ x }</div>
-											</div>
-										))
-									}
-								</div>
-							</Fragment>
-						)
-					}
 				</div>
 			</div>
     );
