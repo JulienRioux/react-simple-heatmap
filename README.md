@@ -15,7 +15,7 @@ or
 npm install react-simple-heatmap
 ```
 
-![Alt text](./img/screenshotReactHeatmap.png)
+![Alt text](./img/screenshotReactHeatmap.jpg)
 
 
 ## Demo
