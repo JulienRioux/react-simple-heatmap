@@ -19,7 +19,7 @@ npm install react-simple-heatmap
 
 
 ## Demo
-[Here is a simple preview.](https://react-simple-heatmap.firebaseapp.com/)
+[Here is a preview.](https://react-simple-heatmap.firebaseapp.com/)
 
 
 ## Obligatory Fields
@@ -58,7 +58,7 @@ export default class App extends Component {
 |--|--|---|--|--|
 | bgColors | Array of 2 colors | Main color using `RGB` format | `["rgb(255, 11, 11)", "rgb(255, 255, 0)"]` | `["rgb(24, 144, 255)", "rgb(255, 255, 255)"]` |
 | xLabels | Array | Display the X-axis labels | `["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]` | `undefined` |
-| yLabels | Array | Display the Y-axis labels | `[1,2,3,4,5,6,7,8,9,10]` | `undefined` |
+| yLabels | Array | Display the Y-axis labels | `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]` | `undefined` |
 | showLegend | Bollean | Display the heatmap legend.  | `true` | `false` |
 | onClick | Function | Adding an handler to cell click | ```(data, x, y) => alert(`Data: ${ data }, X: ${ x }, Y: ${ y }\`)``` | `undefined` |
 | showData | Bollean | Display data inside each cells.  | `true` | `false` |
